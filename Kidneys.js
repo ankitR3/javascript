@@ -78,11 +78,12 @@ app.delete("/", function(req, res) {
 function isThereAtLeastOneUnhealthyKidney() {
     let atLeastOneUnhealthyKidney = false;
     for (let i = 0; i < users[0].kidneys.length; i++) {
-        if (users[0].kidneys[i].healthy) {
-            atLeastOneUnhealthyKidney = true;
+        if (!users[0].kidneys[i].healthy) {
+            return true;
         }
     }
-    return atLeastOneUnhealthyKidney
+    return false;
 }
 
 app.listen(3000);
+console.log(users[0].kidneys);
